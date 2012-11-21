@@ -1,25 +1,28 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row">
+  <div class="span4"> 
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+    
+    <%= simple_form_for(resource, :as => resource_name,  :url => registration_path(resource_name), :html => { :method => :put }, html: { class: "well" },) do |f| %>
+      <%= devise_error_messages! %>
+        <fieldset>
+        <legend>Edit <%= resource_name.to_s.humanize %></legend>
+        <%= f.input :email %>
+        <%= f.input :password, input_html: {autocomplete: "off"}, :placeholder => "Leave blank for no changes.", :label => "Password" %>
+        <%= f.input :password_confirmation, input_html: {autocomplete: "off"}, :label => "Password Confirmation" %>
+        <%= f.input :current_password, :label => "Current Password", :placeholder => "Needed to make any chagnes." %>
+    
+       <div><%= f.button :submit, "Update" %></div>
+        </fieldset>
+    <% end %>
+    
+    <h3>Cancel my account</h3>
+    
+    <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+    
+    <%= link_to "Back", :back %>
+  </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update" %></div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>
+  <div class="span8">
+    <h2>Editing your account has never been easier</h2>
+  </div>
+</div>
